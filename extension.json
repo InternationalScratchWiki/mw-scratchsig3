@@ -1,0 +1,10 @@
+{
+	"name": "ScratchSig3",
+	"author": ["Naleksuh"],
+	"AutoloadClasses": {
+		"ScratchSig": "ScratchSig3.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "ScratchSig::onParserFirstCallInit"
+	}
+}
