@@ -3,11 +3,18 @@ const SCRATCHSIG_USERNAME_NOT_FOUND = '@SCRATCHSIG_USERNAME_NOT_FOUND';
 const SCRATCHSIG_API_FAILURE = '@SCRATCHSIG_API_FAILURE';
 
 /**
+ * Convert a MediaWiki username to a Scratch username
+ */
+function wikiUsernameToScratchUsername(string $username) : string {
+	return str_replace(' ', '_', $username);
+}
+
+/**
  * Get the Scratch ID corresponding to a given username directly from the API (note: NOT cached)
  * @return Returns the ID if successful, will return '@SCRATCHSIG_USERNAME_NOT_FOUND' if no username corresponds to the given ID, and '@SCRATCHSIG_API_FAILURE' if the API failed to load
  */
 function scratchUsernameToIdFromApi(string $username) {
-	$scratchApiResult = @file_get_contents('https://api.scratch.mit.edu/users/' . rawurlencode($username));
+	$scratchApiResult = @file_get_contents('https://api.scratch.mit.edu/users/' . rawurlencode(wikiUsernameToScratchUsername($username)));
 	
 	//handle the various potential response failures
 	if (!isset($http_response_header)) {
