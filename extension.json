@@ -1,6 +1,7 @@
 {
 	"name": "ScratchSig3",
-	"author": ["Naleksuh"],
+	"author": ["Naleksuh", "Jacob G. (jvvg)"],
+	"url": "https://github.com/InternationalScratchWiki/mw-scratchsig3",
 	"AutoloadClasses": {
 		"ScratchSig": "ScratchSig3.php"
 	},
