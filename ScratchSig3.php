@@ -2,7 +2,7 @@
 class ScratchSig {
 	public static function onParserFirstCallInit (Parser $parser) {
 		$parser->setHook('scratchsig', array ("ScratchSig", "onscratchsig"));
-}
+	}
 
 
 public static function onscratchsig ($input, array $args, Parser $parser, PPFrame $frame) {
