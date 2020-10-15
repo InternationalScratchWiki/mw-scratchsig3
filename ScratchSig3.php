@@ -83,10 +83,10 @@ class ScratchSig {
 		if ($avatarUrl == SCRATCHSIG_API_FAILURE) {
 			return '<br /><b>Scratch API Failure. Please try again later.</b>';
 		}
-		if ($avatarUrl == SCRATCHSIG_USERNAME_NOT_FOUND) {
-			return '<br /><b>Scratch username not found: ' . htmlspecialchars($username) . '</b>';
-		}
 		
-		return '<br/><img src="' . htmlspecialchars($avatarUrl) . '" width="18px" height="18px"> ' . $parser->recursiveTagParse("[[User:$username|$username]] ([[User_talk:$username#top|talk]] {{!}} [[Special:Contributions/$username|contribs]])");
+		//if the username is not found, then display no avatar URL at all
+		$avatarHtml = $avatarUrl == SCRATCHSIG_USERNAME_NOT_FOUND ? '' : '<img src="' . htmlspecialchars($avatarUrl) . '" width="18px" height="18px">';
+		
+		return '<br/>' . $avatarHtml . ' ' . $parser->recursiveTagParse("[[User:$username|$username]] ([[User_talk:$username#top|talk]] {{!}} [[Special:Contributions/$username|contribs]])");
 	}
 }
