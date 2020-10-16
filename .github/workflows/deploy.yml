@@ -25,4 +25,4 @@ jobs:
         run: |
           echo "Running webhook, see result below..."
           echo "Repo: $REPO"
-          wget --content-on-error -q -O - "https://scratch-wiki.info/deploy.php?repo=$REPO&branch=$BRANCH&secret=$SUPER_SECRET"
+          wget --content-on-error -q -O - "https://scratch-wiki.info/service_api/deploy.php?repo=$REPO&branch=$BRANCH&secret=$SUPER_SECRET"
