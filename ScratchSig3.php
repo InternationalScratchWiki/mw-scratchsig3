@@ -26,6 +26,13 @@ function scratchUsernameToIdFromApi(string $username) {
 	}
 			
 	return json_decode($scratchApiResult, $assoc=true)['id'];
+} 
+
+/**
+ * Get the cache key for storing the Scratch user ID corresponding to a given username
+ */
+function scratchUserIdCacheKey(string $username) : string {
+	return 'scratchsig::userIdByUsername[' . $username . ']';
 }
 	
 /**
@@ -33,14 +40,12 @@ function scratchUsernameToIdFromApi(string $username) {
  * @return Returns the ID if successful, will return '@SCRATCHSIG_USERNAME_NOT_FOUND' if no username corresponds to the given ID, and '@SCRATCHSIG_API_FAILURE' if the API failed to load
  */
 function scratchUsernameToId(string $username) : string {
-	global $wgScratchSigUserIdsByUsername;
+	$cache = ObjectCache::getLocalClusterInstance();
 	
-	if (!isset($wgScratchSigUserIdsByUsername)) {
-		$wgScratchSigUserIdsByUsername = [];
-	}
+	$userId = $cache->get(scratchUserIdCacheKey($username));
 	
 	//if the user ID is not cached, then get it from the API and cache it
-	if (!isset($wgScratchSigUserIdsByUsername[$username])) {
+	if (!$userId) {
 		$userId = scratchUsernameToIdFromApi($username);
 		
 		//for an API failure, do NOT cache the result since the failure is probably transient
@@ -49,10 +54,10 @@ function scratchUsernameToId(string $username) : string {
 		}
 		
 		//cache the result
-		$wgScratchSigUserIdsByUsername[$username] = $userId;
+		$cache->set(scratchUserIdCacheKey($username), $userId);
 	}
 	
-	return $wgScratchSigUserIdsByUsername[$username];
+	return $userId;
 }
 
 /**
