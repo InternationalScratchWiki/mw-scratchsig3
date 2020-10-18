@@ -82,6 +82,8 @@ class ScratchSig {
 	}
 
 	public static function onScratchSig (string $username, array $args, Parser $parser, PPFrame $frame) : string {
+		$parser->getOutput()->addModuleStyles('ext.scratchSig3');
+		
 		$avatarUrl = scratchAvatarUrl($username);
 		
 		//handle the various failures that might happen
@@ -90,7 +92,7 @@ class ScratchSig {
 		}
 		
 		//if the username is not found, then display no avatar URL at all
-		$avatarHtml = $avatarUrl == SCRATCHSIG_USERNAME_NOT_FOUND ? '' : '<img src="' . htmlspecialchars($avatarUrl) . '" width="18px" height="18px">';
+		$avatarHtml = $avatarUrl == SCRATCHSIG_USERNAME_NOT_FOUND ? '' : '<img src="' . htmlspecialchars($avatarUrl) . '" class="scratchsigimage" />';
 		
 		return '<br/>' . $avatarHtml . ' ' . $parser->recursiveTagParse("[[User:$username|$username]] ([[User_talk:$username#top|talk]] {{!}} [[Special:Contributions/$username|contribs]])");
 	}
