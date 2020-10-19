@@ -7,5 +7,12 @@
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "ScratchSig::onParserFirstCallInit"
+	},
+	"ResourceModules": {
+		"ext.scratchSig3": {
+			"styles": "ScratchSig3.css",
+			"localBasePath": "resources",
+			"remoteExtPath": "scratchsig3/resources"
+		}
 	}
 }
