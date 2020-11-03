@@ -73,7 +73,7 @@ function isSuccessfulScratchId(string $id) : string {
 function scratchAvatarUrl(string $username) : string {
 	$userId = scratchUsernameToId($username);
 	
-	return isSuccessfulScratchId($userId) ? 'http://cdn.scratch.mit.edu/get_image/user/' . $userId . '_18x18.png' : $userId;
+	return isSuccessfulScratchId($userId) ? 'https://cdn.scratch.mit.edu/get_image/user/' . $userId . '_18x18.png' : $userId;
 }
 
 class ScratchSig {
