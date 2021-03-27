@@ -81,8 +81,12 @@ class ScratchSig {
 		$parser->setHook('scratchsig', array ("ScratchSig", "onScratchSig"));
 	}
 
-	public static function onScratchSig (string $username, array $args, Parser $parser, PPFrame $frame) : string {
+	public static function onScratchSig (?string $username, array $args, Parser $parser, PPFrame $frame) : string {
 		$parser->getOutput()->addModuleStyles('ext.scratchSig3');
+		
+		if (empty($username)) {
+			return '';
+		}
 		
 		$avatarUrl = scratchAvatarUrl($username);
 		
