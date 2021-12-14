@@ -21,8 +21,12 @@ function scratchUsernameToIdFromApi(string $username) {
 		return SCRATCHSIG_API_FAILURE;
 	}
 				
-	if (strstr($http_response_header[0], '404 Not Found')) {
+	if (preg_match('%^HTTP/\d+(?:\.\d+)? 404%', $http_response_header[0])) {
 		return SCRATCHSIG_USERNAME_NOT_FOUND;
+	}
+	
+	if (!preg_match('%^HTTP/\d+(?:\.\d+)? 2\d{2}%', $http_response_header[0])) {
+		return SCRATCHSIG_API_FAILURE;
 	}
 			
 	return json_decode($scratchApiResult, $assoc=true)['id'];
