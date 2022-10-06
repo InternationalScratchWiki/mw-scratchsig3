@@ -1,4 +1,5 @@
 {
+	"manifest_version": 1,
 	"name": "ScratchSig3",
 	"author": ["Naleksuh", "Jacob G. (jvvg)"],
 	"url": "https://github.com/InternationalScratchWiki/mw-scratchsig3",
