@@ -1,19 +1,29 @@
 {
-	"manifest_version": 1,
+	"manifest_version": 2,
 	"name": "ScratchSig3",
-	"author": ["Naleksuh", "Jacob G. (jvvg)"],
+	"author": [
+		"Naleksuh",
+		"Jacob G. (jvvg)"
+	],
 	"url": "https://github.com/InternationalScratchWiki/mw-scratchsig3",
 	"AutoloadClasses": {
 		"ScratchSig": "ScratchSig3.php"
 	},
 	"Hooks": {
-		"ParserFirstCallInit": "ScratchSig::onParserFirstCallInit"
+		"ParserFirstCallInit": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "ScratchSig"
+		}
 	},
 	"ResourceModules": {
 		"ext.scratchSig3": {
 			"styles": "ScratchSig3.css",
-			"localBasePath": "resources",
-			"remoteExtPath": "scratchsig3/resources"
+			"localBasePath": "resources"
 		}
+	},
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
 	}
 }
