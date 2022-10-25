@@ -89,7 +89,7 @@ class ScratchSig implements ParserFirstCallInitHook {
 	}
 
 	public static function onScratchSig(?string $username, array $args, Parser $parser, PPFrame $frame): string {
-		$parser->getOutput()->addModuleStyles('ext.scratchSig3');
+		$parser->getOutput()->addModuleStyles(['ext.scratchSig3']);
 
 		if (empty($username)) {
 			return '';
